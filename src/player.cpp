@@ -10,17 +10,17 @@ Player::Player(float plr_width, float plr_height, float plr_x, float plr_y)
 		std::cout << "ERROR: Cannot load upwards texture";
 	}
 
-	if (!down_texture.loadFromFile("content/upwards.png"))
+	if (!down_texture.loadFromFile("content/downwards.png"))
 	{
 		std::cout << "ERROR: Cannot load downwards texture";
 	}
 
-	if (!left_texture.loadFromFile("content/upwards.png"))
+	if (!left_texture.loadFromFile("content/left.png"))
 	{
 		std::cout << "ERROR: Cannot load left texture";
 	}
 
-	if (!right_texture.loadFromFile("content/upwards.png"))
+	if (!right_texture.loadFromFile("content/right.png"))
 	{
 		std::cout << "ERROR: Cannot load right texture";
 	}
@@ -34,6 +34,7 @@ void Player::drawTo(sf::RenderWindow& window)
 void Player::movePlayer()
 {
 	sf::Vector2f plr_direction;
+	player.setTexture(down_texture);
 
 	// Move player up or down when W or S is pressed
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -44,22 +45,19 @@ void Player::movePlayer()
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		plr_direction.y += step;
-		plr_up = false;
-		plr_down = true;
+		player.setTexture(down_texture);
 	}
 
 	// Move player left or right when A or D is pressed
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		plr_direction.x -= step;
-		plr_left = true;
-		plr_right = false;
+		player.setTexture(left_texture);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		plr_direction.x += step;
-		plr_left = false;
-		plr_right = true;
+		player.setTexture(right_texture);
 	}
 
 	player.move(plr_direction);

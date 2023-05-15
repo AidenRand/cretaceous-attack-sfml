@@ -16,10 +16,6 @@ private:
 	sf::Texture down_texture;
 	sf::Texture left_texture;
 	sf::Texture right_texture;
-	bool plr_up;
-	bool plr_down;
-	bool plr_left;
-	bool plr_right;
 	float step = 5.0;
 };
 
