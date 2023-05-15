@@ -7,6 +7,22 @@ Player::Player(float plr_width, float plr_height, float plr_x, float plr_y)
 	player.setFillColor(sf::Color(200, 200, 200));
 }
 
+void Player::movePlayer()
+{
+	sf::Vector2f plr_direction;
+	// Move player left or right when A or D is pressed
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		plr_direction.x += step;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		plr_direction.x -= step;
+	}
+
+	player.move(plr_direction);
+}
+
 void Player::drawTo(sf::RenderWindow& window)
 {
 	window.draw(player);

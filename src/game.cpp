@@ -23,6 +23,7 @@ void gameFunction(sf::RenderWindow& window)
 		window.clear();
 
 		player.drawTo(window);
+		player.movePlayer();
 		window.display();
 	}
 }
