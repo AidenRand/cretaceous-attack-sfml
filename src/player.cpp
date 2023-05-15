@@ -5,6 +5,7 @@ Player::Player(float plr_width, float plr_height, float plr_x, float plr_y)
 	player.setScale(sf::Vector2f(plr_width, plr_height));
 	player.setPosition(sf::Vector2f(plr_x, plr_y));
 
+	// Fetch player textures
 	if (!up_texture.loadFromFile("content/upwards.png"))
 	{
 		std::cout << "ERROR: Cannot load upwards texture";
@@ -24,6 +25,8 @@ Player::Player(float plr_width, float plr_height, float plr_x, float plr_y)
 	{
 		std::cout << "ERROR: Cannot load right texture";
 	}
+
+	player.setTexture(down_texture);
 }
 
 void Player::drawTo(sf::RenderWindow& window)
@@ -34,7 +37,6 @@ void Player::drawTo(sf::RenderWindow& window)
 void Player::movePlayer()
 {
 	sf::Vector2f plr_direction;
-	player.setTexture(down_texture);
 
 	// Move player up or down when W or S is pressed
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
