@@ -10,14 +10,25 @@ Player::Player(float plr_width, float plr_height, float plr_x, float plr_y)
 void Player::movePlayer()
 {
 	sf::Vector2f plr_direction;
+
+	// Move player up or down when W or S is pressed
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		plr_direction.y -= step;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		plr_direction.y += step;
+	}
+
 	// Move player left or right when A or D is pressed
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		plr_direction.x += step;
+		plr_direction.x -= step;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		plr_direction.x -= step;
+		plr_direction.x += step;
 	}
 
 	player.move(plr_direction);
