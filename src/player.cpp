@@ -6,3 +6,8 @@ Player::Player(float plr_width, float plr_height, float plr_x, float plr_y)
 	player.setPosition(sf::Vector2f(plr_x, plr_y));
 	player.setFillColor(sf::Color(200, 200, 200));
 }
+
+void Player::drawTo(sf::RenderWindow& window)
+{
+	window.draw(player);
+}

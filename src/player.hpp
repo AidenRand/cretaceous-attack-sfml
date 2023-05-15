@@ -7,6 +7,7 @@ class Player
 {
 public:
 	Player(float plr_width, float plr_height, float plr_x, float plr_y);
+	void drawTo(sf::RenderWindow& window);
 
 private:
 	sf::RectangleShape player;

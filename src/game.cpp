@@ -4,10 +4,10 @@
 void gameFunction(sf::RenderWindow& window)
 {
 
-	float plr_width = 50;
-	float plr_height = 50;
-	float plr_x = 590;
-	float plr_y = 462;
+	float plr_width = 30;
+	float plr_height = 30;
+	float plr_x = 610;
+	float plr_y = 482;
 	Player player(plr_width, plr_height, plr_x, plr_y);
 	while (window.isOpen())
 	{
@@ -22,6 +22,7 @@ void gameFunction(sf::RenderWindow& window)
 		}
 		window.clear();
 
+		player.drawTo(window);
 		window.display();
 	}
 }
