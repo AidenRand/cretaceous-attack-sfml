@@ -26,6 +26,38 @@ Player::Player(float plr_width, float plr_height, float plr_x, float plr_y)
 		std::cout << "ERROR: Cannot load right texture";
 	}
 
+	// Fetch walking textures
+
+	if (!walkup_left_texture.loadFromFile("content/forward-walk-left.png"))
+	{
+		std::cout << "ERROR: Cannot load walking upwards left texture";
+	}
+
+	if (!walkup_right_texture.loadFromFile("content/forward-walk-right.png"))
+	{
+		std::cout << "ERROR: Cannot load walking upwards right texture";
+	}
+
+	if (!walkdown_left_texture.loadFromFile("content/down-walk-left.png"))
+	{
+		std::cout << "ERROR: Cannot load walking down left texture";
+	}
+
+	if (!walkdown_right_texture.loadFromFile("content/down-walk-right.png"))
+	{
+		std::cout << "ERROR: Cannot load walking down right texture";
+	}
+
+	if (!walkleft_texture.loadFromFile("content/walk-left.png"))
+	{
+		std::cout << "ERROR: Cannot load walking left texture";
+	}
+
+	if (!walkright_texture.loadFromFile("content/walk-right.png"))
+	{
+		std::cout << "ERROR: Cannot load walking right texture";
+	}
+
 	player.setTexture(down_texture);
 }
 

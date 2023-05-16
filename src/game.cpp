@@ -3,6 +3,7 @@
 
 void gameFunction(sf::RenderWindow& window)
 {
+	std::srand(time(NULL));
 
 	// Create player
 	float plr_width = 1;
@@ -12,6 +13,7 @@ void gameFunction(sf::RenderWindow& window)
 	Player player(plr_width, plr_height, plr_x, plr_y);
 	sf::Texture background_texture;
 	sf::Sprite background;
+
 	if (!background_texture.loadFromFile("content/background.png"))
 	{
 		std::cout << "ERROR: Cannot load background image";
