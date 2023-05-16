@@ -19,13 +19,13 @@ private:
 	sf::Texture right_texture;
 
 	// Walking textures
-	sf::Texture walkup_left_texture;
-	sf::Texture walkup_right_texture;
-	sf::Texture walkdown_left_texture;
-	sf::Texture walkdown_right_texture;
+	sf::Texture walkup_texture;
+	sf::Texture walkdown_texture;
 	sf::Texture walkleft_texture;
 	sf::Texture walkright_texture;
+
 	float step = 5.0;
+	int animate;
 };
 
 #endif

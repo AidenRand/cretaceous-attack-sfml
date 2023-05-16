@@ -6,57 +6,10 @@ Player::Player(float plr_width, float plr_height, float plr_x, float plr_y)
 	player.setPosition(sf::Vector2f(plr_x, plr_y));
 
 	// Fetch player textures
-	if (!up_texture.loadFromFile("content/forward-nogun.png"))
-	{
-		std::cout << "ERROR: Cannot load upwards texture";
-	}
-
-	if (!down_texture.loadFromFile("content/downward-nogun.png"))
-	{
-		std::cout << "ERROR: Cannot load downwards texture";
-	}
-
-	if (!left_texture.loadFromFile("content/left-nogun.png"))
-	{
-		std::cout << "ERROR: Cannot load left texture";
-	}
-
-	if (!right_texture.loadFromFile("content/right-nogun.png"))
-	{
-		std::cout << "ERROR: Cannot load right texture";
-	}
-
-	// Fetch walking textures
-
-	if (!walkup_left_texture.loadFromFile("content/forward-walk-left.png"))
-	{
-		std::cout << "ERROR: Cannot load walking upwards left texture";
-	}
-
-	if (!walkup_right_texture.loadFromFile("content/forward-walk-right.png"))
-	{
-		std::cout << "ERROR: Cannot load walking upwards right texture";
-	}
-
-	if (!walkdown_left_texture.loadFromFile("content/down-walk-left.png"))
-	{
-		std::cout << "ERROR: Cannot load walking down left texture";
-	}
-
-	if (!walkdown_right_texture.loadFromFile("content/down-walk-right.png"))
-	{
-		std::cout << "ERROR: Cannot load walking down right texture";
-	}
-
-	if (!walkleft_texture.loadFromFile("content/walk-left.png"))
-	{
-		std::cout << "ERROR: Cannot load walking left texture";
-	}
-
-	if (!walkright_texture.loadFromFile("content/walk-right.png"))
-	{
-		std::cout << "ERROR: Cannot load walking right texture";
-	}
+	up_texture.loadFromFile("content/forward-nogun.png");
+	down_texture.loadFromFile("content/downward-nogun.png");
+	left_texture.loadFromFile("content/left-nogun.png");
+	right_texture.loadFromFile("content/right-nogun.png");
 
 	player.setTexture(down_texture);
 }
