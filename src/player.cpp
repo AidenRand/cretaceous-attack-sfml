@@ -6,22 +6,22 @@ Player::Player(float plr_width, float plr_height, float plr_x, float plr_y)
 	player.setPosition(sf::Vector2f(plr_x, plr_y));
 
 	// Fetch player textures
-	if (!up_texture.loadFromFile("content/upwards.png"))
+	if (!up_texture.loadFromFile("content/forward-nogun.png"))
 	{
 		std::cout << "ERROR: Cannot load upwards texture";
 	}
 
-	if (!down_texture.loadFromFile("content/downwards.png"))
+	if (!down_texture.loadFromFile("content/downward-nogun.png"))
 	{
 		std::cout << "ERROR: Cannot load downwards texture";
 	}
 
-	if (!left_texture.loadFromFile("content/left.png"))
+	if (!left_texture.loadFromFile("content/left-nogun.png"))
 	{
 		std::cout << "ERROR: Cannot load left texture";
 	}
 
-	if (!right_texture.loadFromFile("content/right.png"))
+	if (!right_texture.loadFromFile("content/right-nogun.png"))
 	{
 		std::cout << "ERROR: Cannot load right texture";
 	}
