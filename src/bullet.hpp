@@ -6,7 +6,9 @@
 class Bullet
 {
 public:
-	Bullet(float width, float height, float x, float y);
+	Bullet(float width, float height);
+	void drawTo(sf::RenderWindow& window);
+	void setPos(float player_x, float player_y);
 
 private:
 	sf::RectangleShape bullet;
