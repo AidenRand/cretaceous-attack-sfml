@@ -9,6 +9,8 @@ public:
 	Player(float plr_width, float plr_height, float plr_x, float plr_y);
 	void drawTo(sf::RenderWindow& window);
 	void movePlayer();
+	float returnXPos();
+	float returnYPos();
 
 private:
 	// Normal textures

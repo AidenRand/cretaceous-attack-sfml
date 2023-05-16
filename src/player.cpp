@@ -49,3 +49,15 @@ void Player::movePlayer()
 
 	player.move(plr_direction);
 }
+
+float Player::returnXPos()
+{
+	float x_pos = player.getPosition().x;
+	return x_pos;
+}
+
+float Player::returnYPos()
+{
+	float y_pos = player.getPosition().y;
+	return y_pos;
+}
