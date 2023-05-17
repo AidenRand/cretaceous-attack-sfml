@@ -11,10 +11,16 @@ public:
 	void movePlayer();
 	float returnXPos();
 	float returnYPos();
+	sf::Sprite player;
+
+	// Check what direction player is facing
+	bool facing_left = false;
+	bool facing_right = false;
+	bool facing_up = false;
+	bool facing_down = false;
 
 private:
 	// Normal textures
-	sf::Sprite player;
 	sf::Texture up_texture;
 	sf::Texture down_texture;
 	sf::Texture left_texture;
@@ -27,7 +33,6 @@ private:
 	sf::Texture walkright_texture;
 
 	float step = 5.0;
-	int animate;
 };
 
 #endif
