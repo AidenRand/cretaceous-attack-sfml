@@ -27,7 +27,8 @@ void Bullet::fireBullet(Player& player_rect, float bullet_speed)
 	{
 		bullet_dir.x = -bullet_speed;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		bullet_dir.x = bullet_speed;
 	}
@@ -44,5 +45,5 @@ void Bullet::fireBullet(Player& player_rect, float bullet_speed)
 
 void Bullet::moveBullet()
 {
-	bullet.move(bullet_dir.x, bullet_dir.y);
+	bullet.move(bullet_dir);
 }
