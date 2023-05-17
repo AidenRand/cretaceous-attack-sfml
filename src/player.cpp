@@ -28,11 +28,15 @@ void Player::movePlayer()
 	{
 		plr_direction.y -= step;
 		player.setTexture(up_texture);
+		facing_up = true;
+		facing_down = false;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		plr_direction.y += step;
 		player.setTexture(down_texture);
+		facing_up = false;
+		facing_down = true;
 	}
 
 	// Move player left or right when A or D is pressed
@@ -40,11 +44,15 @@ void Player::movePlayer()
 	{
 		plr_direction.x -= step;
 		player.setTexture(left_texture);
+		facing_left = true;
+		facing_right = false;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		plr_direction.x += step;
 		player.setTexture(right_texture);
+		facing_left = false;
+		facing_right = true;
 	}
 
 	player.move(plr_direction);
