@@ -22,24 +22,28 @@ void Bullet::fireBullet(Player& player_rect, float bullet_speed)
 {
 	auto player = player_rect.player;
 
-	sf::Vector2f bullet_dir;
-
-	if (player_rect.facing_left)
+	// Fire Bullets in the direction the player is facing
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		bullet_dir.x -= bullet_speed;
-	}
-	else if (player_rect.facing_right)
-	{
-		bullet_dir.x += bullet_speed;
+		bullet_dir.x = -bullet_speed;
 	}
 
-	if (player_rect.facing_up)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		bullet_dir.y -= bullet_speed;
+		bullet_dir.x = bullet_speed;
 	}
-	else if (player_rect.facing_down)
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		bullet_dir.x += bullet_speed;
+		bullet_dir.y = -bullet_speed;
 	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		bullet_dir.x = bullet_speed;
+	}
+}
+
+void Bullet::moveBullet()
+{
 	bullet.move(bullet_dir);
 }
