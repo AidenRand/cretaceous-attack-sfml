@@ -23,15 +23,14 @@ void gameFunction(sf::RenderWindow& window)
 	Player player(plr_width, plr_height, plr_x, plr_y);
 
 	// Create bullet variables
-	float bullet_width = 5;
-	float bullet_height = 5;
-	float bullet_x = 645;
-	float bullet_y = 505;
+	float bullet_width = 2;
+	float bullet_height = 2;
 	float bullet_speed = 10;
+	unsigned int reload_timer = 0;
+	int cooldown = 5;
+	bool bullet_firing = false;
 	Bullet bullet(bullet_width, bullet_height);
 	std::vector<Bullet> bullet_vector;
-	bool bullet_firing = false;
-	unsigned int reload_timer = 0;
 
 	while (window.isOpen())
 	{
@@ -43,6 +42,7 @@ void gameFunction(sf::RenderWindow& window)
 				window.close();
 			}
 
+			// If space is pressed fire bullet
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			{
 				bullet_firing = true;
@@ -58,9 +58,9 @@ void gameFunction(sf::RenderWindow& window)
 			if (bullet_firing)
 			{
 				bullet.fireBullet(player, bullet_speed);
-				bullet.setPos(bullet_x, bullet_y);
+				bullet.setPos(player.returnXPos(), player.returnYPos());
 				bullet_firing = false;
-				reload_timer += 5;
+				reload_timer += cooldown;
 				bullet_vector.push_back(bullet);
 			}
 		}
@@ -79,7 +79,7 @@ void gameFunction(sf::RenderWindow& window)
 		std::cout << bullet_vector.size() << "\n";
 
 		player.drawTo(window);
-		player.changePlayerTexture();
+		player.movePlayer();
 		window.display();
 	}
 }

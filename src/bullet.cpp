@@ -26,20 +26,24 @@ void Bullet::fireBullet(Player& player_rect, float bullet_speed)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		bullet_dir.x = -bullet_speed;
+		bullet_dir.y = 0;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		bullet_dir.x = bullet_speed;
+		bullet_dir.y = 0;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
+		bullet_dir.x = 0;
 		bullet_dir.y = -bullet_speed;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		bullet_dir.x = bullet_speed;
+		bullet_dir.x = 0;
+		bullet_dir.y = bullet_speed;
 	}
 }
 

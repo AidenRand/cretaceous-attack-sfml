@@ -8,15 +8,23 @@ class Player
 public:
 	Player(float plr_width, float plr_height, float plr_x, float plr_y);
 	void drawTo(sf::RenderWindow& window);
-	void changePlayerTexture();
+	void movePlayer();
+	float returnXPos();
+	float returnYPos();
 	sf::Sprite player;
 
 private:
-	// Shooting textures
+	// Normal textures
 	sf::Texture up_texture;
 	sf::Texture down_texture;
 	sf::Texture left_texture;
 	sf::Texture right_texture;
+
+	// Walking textures
+	sf::Texture walkup_texture;
+	sf::Texture walkdown_texture;
+	sf::Texture walkleft_texture;
+	sf::Texture walkright_texture;
 
 	float step = 5.0;
 };
