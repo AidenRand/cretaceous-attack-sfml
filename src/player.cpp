@@ -5,11 +5,11 @@ Player::Player(float plr_width, float plr_height, float plr_x, float plr_y)
 	player.setScale(sf::Vector2f(plr_width, plr_height));
 	player.setPosition(sf::Vector2f(plr_x, plr_y));
 
-	// Fetch player textures
-	up_texture.loadFromFile("content/forward-nogun.png");
-	down_texture.loadFromFile("content/downward-nogun.png");
-	left_texture.loadFromFile("content/left-nogun.png");
-	right_texture.loadFromFile("content/right-nogun.png");
+	// Fetch shooting player textures
+	up_texture.loadFromFile("content/forward-gun.png");
+	down_texture.loadFromFile("content/downward-gun.png");
+	left_texture.loadFromFile("content/left-gun.png");
+	right_texture.loadFromFile("content/right-gun.png");
 
 	player.setTexture(down_texture);
 }
@@ -19,53 +19,25 @@ void Player::drawTo(sf::RenderWindow& window)
 	window.draw(player);
 }
 
-void Player::movePlayer()
+void Player::changePlayerTexture()
 {
-	sf::Vector2f plr_direction;
-
-	// Move player up or down when W or S is pressed
+	// Change player texture to direction player is facing
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		plr_direction.y -= step;
 		player.setTexture(up_texture);
-		facing_up = true;
-		facing_down = false;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		plr_direction.y += step;
 		player.setTexture(down_texture);
-		facing_up = false;
-		facing_down = true;
 	}
 
 	// Move player left or right when A or D is pressed
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		plr_direction.x -= step;
 		player.setTexture(left_texture);
-		facing_left = true;
-		facing_right = false;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		plr_direction.x += step;
 		player.setTexture(right_texture);
-		facing_left = false;
-		facing_right = true;
 	}
-
-	player.move(plr_direction);
-}
-
-float Player::returnXPos()
-{
-	float x_pos = player.getPosition().x;
-	return x_pos;
-}
-
-float Player::returnYPos()
-{
-	float y_pos = player.getPosition().y;
-	return y_pos;
 }
