@@ -11,10 +11,10 @@ public:
 	void movePlayer();
 	float returnXPos();
 	float returnYPos();
+	sf::Sprite player;
 
 private:
 	// Normal textures
-	sf::Sprite player;
 	sf::Texture up_texture;
 	sf::Texture down_texture;
 	sf::Texture left_texture;
@@ -27,7 +27,6 @@ private:
 	sf::Texture walkright_texture;
 
 	float step = 5.0;
-	int animate;
 };
 
 #endif

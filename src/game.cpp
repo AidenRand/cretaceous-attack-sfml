@@ -23,16 +23,16 @@ void gameFunction(sf::RenderWindow& window)
 	Player player(plr_width, plr_height, plr_x, plr_y);
 
 	// Create bullet variables
-	std::vector<Bullet> bullet_vector;
 	float bullet_width = 5;
 	float bullet_height = 5;
-	Bullet(bullet_width, bullet_height);
+	float bullet_speed = 10;
+	Bullet bullet(bullet_width, bullet_height);
+	std::vector<Bullet> bullet_vector;
 	bool bullet_firing = false;
 	unsigned int reload_timer = 0;
 
 	while (window.isOpen())
 	{
-
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -48,20 +48,32 @@ void gameFunction(sf::RenderWindow& window)
 			}
 		}
 		window.clear();
+		window.draw(background);
 
 		if (reload_timer == 0)
 		{
-			bullet_firing = false;
-			reload_timer += 5;
+			if (bullet_firing)
+			{
+				bullet.fireBullet(player, bullet_speed);
+				bullet.setPos(player.returnXPos(), player.returnYPos());
+				bullet_firing = false;
+				reload_timer += 5;
+				bullet_vector.push_back(bullet);
+			}
+		}
+		else
+		{
+			reload_timer--;
 		}
 
 		for (long unsigned int i = 0; i < bullet_vector.size(); i++)
 		{
+			bullet_vector[i].moveBullet();
 			bullet_vector[i].drawTo(window);
-			bullet_vector[i].setPos(player.returnXPos(), player.returnYPos());
 		}
 
-		window.draw(background);
+		std::cout << bullet_vector.size() << "\n";
+
 		player.drawTo(window);
 		player.movePlayer();
 		window.display();

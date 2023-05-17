@@ -1,4 +1,5 @@
 #include "bullet.hpp"
+#include "player.hpp"
 #include <SFML/Graphics.hpp>
 
 Bullet::Bullet(float bullet_width, float bullet_height)
@@ -15,4 +16,35 @@ void Bullet::drawTo(sf::RenderWindow& window)
 void Bullet::setPos(float player_x, float player_y)
 {
 	bullet.setPosition(sf::Vector2f(player_x, player_y));
+}
+
+void Bullet::fireBullet(Player& player_rect, float bullet_speed)
+{
+	auto player = player_rect.player;
+
+	// Move bullets
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		bullet_dir.x = -bullet_speed;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		bullet_dir.x = bullet_speed;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		bullet_dir.y = -bullet_speed;
+		std::cout << "sdf";
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		bullet_dir.x = bullet_speed;
+		std::cout << "sdf";
+	}
+}
+
+void Bullet::moveBullet()
+{
+	bullet.move(bullet_dir);
 }
