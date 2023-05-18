@@ -40,7 +40,7 @@ void Bullet::fireBullet(Player& player_rect, float bullet_speed)
 		bullet_dir.x = 0;
 		bullet_dir.y = -bullet_speed;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		bullet_dir.x = 0;
 		bullet_dir.y = bullet_speed;
@@ -50,4 +50,16 @@ void Bullet::fireBullet(Player& player_rect, float bullet_speed)
 void Bullet::moveBullet()
 {
 	bullet.move(bullet_dir);
+}
+
+float Bullet::returnX()
+{
+	float bullet_x = bullet.getPosition().x;
+	return bullet_x;
+}
+
+float Bullet::returnY()
+{
+	float bullet_y = bullet.getPosition().y;
+	return bullet_y;
 }

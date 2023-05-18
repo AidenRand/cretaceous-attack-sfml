@@ -12,6 +12,8 @@ public:
 	void setPos(float player_x, float player_y);
 	void fireBullet(Player& player_rect, float bullet_speed);
 	void moveBullet();
+	float returnX();
+	float returnY();
 
 private:
 	sf::RectangleShape bullet;
