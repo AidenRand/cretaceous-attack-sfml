@@ -2,7 +2,7 @@
 #include "bullet.hpp"
 #include "player.hpp"
 
-void gameFunction(sf::RenderWindow& window)
+void gameFunction(sf::RenderWindow& window, float window_width, float window_height)
 {
 	std::srand(time(NULL));
 	sf::Texture background_texture;
@@ -80,10 +80,18 @@ void gameFunction(sf::RenderWindow& window)
 		{
 			bullet_vector[i].moveBullet();
 			bullet_vector[i].drawTo(window);
+
+			// If the bullet goes off screen, delete it
+			if (bullet_vector[i].returnX() > window_width
+				|| bullet_vector[i].returnX() < 0
+				|| bullet_vector[i].returnY() > window_height
+				|| bullet_vector[i].returnY() < 0)
+			{
+				bullet_vector.erase(bullet_vector.begin() + i);
+			}
 		}
 
-		// std::cout << bullet_vector.size() << "\n";
-		std::cout << reload_timer << "\n";
+		std::cout << bullet_vector.size() << "\n";
 
 		player.drawTo(window);
 		player.changePlayerTexture();
