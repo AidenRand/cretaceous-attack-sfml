@@ -34,10 +34,36 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 		side_four.y = screen_height / 2;
 		dinosaur.setPosition(side_four);
 	}
-	std::cout << random_side << "\n";
 }
 
 void Dinosaurs::drawTo(sf::RenderWindow& window)
 {
 	window.draw(dinosaur);
+}
+
+void Dinosaurs::moveDinosaurs(float dino_speed)
+{
+	// Move in direction corresponding to side generated
+	if (random_side == 0)
+	{
+		direction.x = 0;
+		direction.y = dino_speed;
+	}
+	if (random_side == 1)
+	{
+		direction.x = -dino_speed;
+		direction.y = 0;
+	}
+	if (random_side == 2)
+	{
+		direction.x = 0;
+		direction.y = -dino_speed;
+	}
+	if (random_side == 3)
+	{
+		direction.x = dino_speed;
+		direction.y = 0;
+	}
+
+	dinosaur.move(direction);
 }

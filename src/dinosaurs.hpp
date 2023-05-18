@@ -9,6 +9,7 @@ public:
 	Dinosaurs(float dino_width, float dino_height);
 	void spawnDinosaurs(float screen_width, float screen_height);
 	void drawTo(sf::RenderWindow& window);
+	void moveDinosaurs(float dino_speed);
 
 private:
 	sf::RectangleShape dinosaur;

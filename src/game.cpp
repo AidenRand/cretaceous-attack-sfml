@@ -40,7 +40,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	// Create dinosaur variables
 	float dino_width = 20;
 	float dino_height = 20;
-	Dinosaurs dinosaur(dino_width, dino_height);
+	float dino_speed = 5;
 
 	while (window.isOpen())
 	{
@@ -97,10 +97,11 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 			}
 		}
 
-		std::cout << bullet_vector.size() << "\n";
+		Dinosaurs dinosaur(dino_width, dino_height);
 
 		dinosaur.spawnDinosaurs(screen_width, screen_height);
 		dinosaur.drawTo(window);
+		dinosaur.moveDinosaurs(dino_speed);
 		player.drawTo(window);
 		player.changePlayerTexture();
 		window.display();
