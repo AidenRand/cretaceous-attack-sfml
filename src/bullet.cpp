@@ -1,6 +1,5 @@
 #include "bullet.hpp"
 #include "player.hpp"
-#include <SFML/Graphics.hpp>
 
 Bullet::Bullet(float bullet_width, float bullet_height)
 {
