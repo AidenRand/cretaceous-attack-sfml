@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "bullet.hpp"
+#include "dinosaurs.hpp"
 #include "player.hpp"
 
 void gameFunction(sf::RenderWindow& window, float screen_width, float screen_height)
@@ -35,6 +36,11 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	bool bullet_firing = false;
 	Bullet bullet(bullet_width, bullet_height);
 	std::vector<Bullet> bullet_vector;
+
+	// Create dinosaur variables
+	float dino_width = 20;
+	float dino_height = 20;
+	Dinosaurs dinosaur(dino_width, dino_height);
 
 	while (window.isOpen())
 	{
@@ -93,6 +99,8 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 
 		std::cout << bullet_vector.size() << "\n";
 
+		dinosaur.spawnDinosaurs(screen_width, screen_height);
+		dinosaur.drawTo(window);
 		player.drawTo(window);
 		player.changePlayerTexture();
 		window.display();

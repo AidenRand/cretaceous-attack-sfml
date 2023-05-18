@@ -6,8 +6,9 @@
 class Dinosaurs
 {
 public:
-	Dinosaurs(float dino_width, float dino_height, float dino_x, float dino_y);
+	Dinosaurs(float dino_width, float dino_height);
 	void spawnDinosaurs(float screen_width, float screen_height);
+	void drawTo(sf::RenderWindow& window);
 
 private:
 	sf::RectangleShape dinosaur;
