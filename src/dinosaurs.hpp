@@ -20,6 +20,11 @@ private:
 	sf::Vector2f side_two;
 	sf::Vector2f side_three;
 	sf::Vector2f side_four;
+
+	bool move_up = false;
+	bool move_down = false;
+	bool move_left = false;
+	bool move_right = false;
 };
 
 #endif

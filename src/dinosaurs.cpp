@@ -15,24 +15,28 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 		side_one.x = screen_width / 2;
 		side_one.y = 0;
 		dinosaur.setPosition(side_one);
+		move_down = true;
 	}
 	else if (random_side == 1)
 	{
 		side_two.x = screen_width;
 		side_two.y = screen_height / 2;
 		dinosaur.setPosition(side_two);
+		move_left = true;
 	}
 	else if (random_side == 2)
 	{
 		side_three.x = screen_width / 2;
 		side_three.y = screen_height;
 		dinosaur.setPosition(side_three);
+		move_up = true;
 	}
 	else if (random_side == 3)
 	{
 		side_four.x = 0;
 		side_four.y = screen_height / 2;
 		dinosaur.setPosition(side_four);
+		move_right = true;
 	}
 }
 
@@ -44,26 +48,25 @@ void Dinosaurs::drawTo(sf::RenderWindow& window)
 void Dinosaurs::moveDinosaurs(float dino_speed)
 {
 	// Move in direction corresponding to side generated
-	if (random_side == 0)
+	if (move_down)
 	{
 		direction.x = 0;
 		direction.y = dino_speed;
 	}
-	if (random_side == 1)
+	if (move_left)
 	{
 		direction.x = -dino_speed;
 		direction.y = 0;
 	}
-	if (random_side == 2)
+	if (move_up)
 	{
 		direction.x = 0;
 		direction.y = -dino_speed;
 	}
-	if (random_side == 3)
+	if (move_right)
 	{
 		direction.x = dino_speed;
 		direction.y = 0;
 	}
-
 	dinosaur.move(direction);
 }
