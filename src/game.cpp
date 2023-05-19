@@ -43,7 +43,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	float dino_speed = 5;
 	bool dino_dead = false;
 	std::vector<Dinosaurs> dino_vector;
-	long unsigned int max_dinos = 1;
+	long unsigned int max_dinos = 2;
 
 	while (window.isOpen())
 	{
@@ -110,12 +110,22 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 			dino_vector.push_back(dinosaur);
 		}
 
-		// Move dinosaurs
 		for (long unsigned int i = 0; i != dino_vector.size(); i++)
 		{
-			dino_vector[i].moveDinosaurs(dino_speed);
-			dino_vector[i].drawTo(window);
+			// If dino_dead == false, spawn and move dinosaurs
+			if (!dino_dead)
+			{
+				dino_vector[i].moveDinosaurs(dino_speed);
+				dino_vector[i].drawTo(window);
+			}
 			dino_vector[i].killDinosaurs(dino_dead, player);
+
+			// If dino_dead == true, delete dinosaur
+			if (dino_dead)
+			{
+				dino_vector.erase(dino_vector.begin() + i);
+				dino_dead = false;
+			}
 		}
 
 		player.drawTo(window);

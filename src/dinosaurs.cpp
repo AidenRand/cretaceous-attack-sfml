@@ -76,7 +76,6 @@ void Dinosaurs::moveDinosaurs(float dino_speed)
 
 void Dinosaurs::killDinosaurs(bool& dino_dead, Player& player_rect)
 {
-	dino_dead = false;
 	auto player = player_rect.player;
 
 	// If dino and player collide set dino_dead to true
