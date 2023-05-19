@@ -9,35 +9,37 @@ Dinosaurs::Dinosaurs(float dino_width, float dino_height)
 
 void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 {
+	random_side = rand() % 4;
 	// Spawn dinosaur on side corresponding to random number generated
 	if (random_side == 0)
 	{
 		side_one.x = screen_width / 2;
 		side_one.y = 0;
-		dinosaur.setPosition(side_one);
+		position = side_one;
 		move_down = true;
 	}
 	else if (random_side == 1)
 	{
 		side_two.x = screen_width;
 		side_two.y = screen_height / 2;
-		dinosaur.setPosition(side_two);
+		position = side_two;
 		move_left = true;
 	}
 	else if (random_side == 2)
 	{
 		side_three.x = screen_width / 2;
 		side_three.y = screen_height;
-		dinosaur.setPosition(side_three);
+		position = side_three;
 		move_up = true;
 	}
 	else if (random_side == 3)
 	{
 		side_four.x = 0;
 		side_four.y = screen_height / 2;
-		dinosaur.setPosition(side_four);
+		position = side_four;
 		move_right = true;
 	}
+	dinosaur.setPosition(position);
 }
 
 void Dinosaurs::drawTo(sf::RenderWindow& window)

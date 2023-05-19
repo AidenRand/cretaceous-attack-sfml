@@ -41,8 +41,8 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	float dino_width = 20;
 	float dino_height = 20;
 	float dino_speed = 5;
-	Dinosaurs dinosaur(dino_width, dino_height);
-	dinosaur.spawnDinosaurs(screen_width, screen_height);
+	std::vector<Dinosaurs> dino_vector;
+	long unsigned int max_dinos = 1;
 
 	while (window.isOpen())
 	{
@@ -99,8 +99,23 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 			}
 		}
 
-		dinosaur.moveDinosaurs(dino_speed);
-		dinosaur.drawTo(window);
+		// Create dinosaurs
+		Dinosaurs dinosaur(dino_width, dino_height);
+		dinosaur.spawnDinosaurs(screen_width, screen_height);
+
+		// Push dinosaurs to dino_vector
+		if (dino_vector.size() < max_dinos)
+		{
+			dino_vector.push_back(dinosaur);
+		}
+
+		// Move dinosaurs
+		for (long unsigned int i = 0; i != dino_vector.size(); i++)
+		{
+			dino_vector[i].moveDinosaurs(dino_speed);
+			dino_vector[i].drawTo(window);
+		}
+
 		player.drawTo(window);
 		player.changePlayerTexture();
 		window.display();

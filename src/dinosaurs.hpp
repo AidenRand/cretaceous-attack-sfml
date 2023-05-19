@@ -13,9 +13,10 @@ public:
 
 private:
 	sf::RectangleShape dinosaur;
+	sf::Vector2f position;
 	sf::Vector2f direction;
 	// Coordinates for spawn locations on four sides of window
-	int random_side = rand() % 4;
+	int random_side;
 	sf::Vector2f side_one;
 	sf::Vector2f side_two;
 	sf::Vector2f side_three;
