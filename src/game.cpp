@@ -41,6 +41,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	float dino_width = 20;
 	float dino_height = 20;
 	float dino_speed = 5;
+	bool dino_dead = false;
 	std::vector<Dinosaurs> dino_vector;
 	long unsigned int max_dinos = 1;
 
@@ -114,6 +115,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		{
 			dino_vector[i].moveDinosaurs(dino_speed);
 			dino_vector[i].drawTo(window);
+			dino_vector[i].killDinosaurs(dino_dead, player);
 		}
 
 		player.drawTo(window);
