@@ -1,6 +1,5 @@
 #include "bullet.hpp"
 #include "player.hpp"
-#include <SFML/Graphics.hpp>
 
 Bullet::Bullet(float bullet_width, float bullet_height)
 {
@@ -26,24 +25,40 @@ void Bullet::fireBullet(Player& player_rect, float bullet_speed)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		bullet_dir.x = -bullet_speed;
+		bullet_dir.y = 0;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		bullet_dir.x = bullet_speed;
+		bullet_dir.y = 0;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
+		bullet_dir.x = 0;
 		bullet_dir.y = -bullet_speed;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		bullet_dir.x = bullet_speed;
+		bullet_dir.x = 0;
+		bullet_dir.y = bullet_speed;
 	}
 }
 
 void Bullet::moveBullet()
 {
 	bullet.move(bullet_dir);
+}
+
+float Bullet::returnX()
+{
+	float bullet_x = bullet.getPosition().x;
+	return bullet_x;
+}
+
+float Bullet::returnY()
+{
+	float bullet_y = bullet.getPosition().y;
+	return bullet_y;
 }

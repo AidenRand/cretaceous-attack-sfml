@@ -21,22 +21,23 @@ void Player::drawTo(sf::RenderWindow& window)
 
 void Player::changePlayerTexture()
 {
-	// Change player texture to direction player is facing
+	// Change player direction when W or S is pressed
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
+
 		player.setTexture(up_texture);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		player.setTexture(down_texture);
 	}
 
-	// Move player left or right when A or D is pressed
+	// Change player direction when A or D is pressed
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		player.setTexture(left_texture);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		player.setTexture(right_texture);
 	}

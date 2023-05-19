@@ -11,13 +11,13 @@ public:
 	void changePlayerTexture();
 	sf::Sprite player;
 
-private:
-	// Shooting textures
+	// Normal textures
 	sf::Texture up_texture;
 	sf::Texture down_texture;
 	sf::Texture left_texture;
 	sf::Texture right_texture;
 
+private:
 	float step = 5.0;
 };
 

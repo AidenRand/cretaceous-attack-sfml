@@ -3,5 +3,5 @@
 
 #include <SFML/Graphics.hpp>
 
-void gameFunction(sf::RenderWindow& window);
+void gameFunction(sf::RenderWindow& window, float window_width, float window_height);
 #endif

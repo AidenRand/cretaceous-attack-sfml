@@ -1,8 +1,9 @@
 #include "game.hpp"
 #include "bullet.hpp"
+#include "dinosaurs.hpp"
 #include "player.hpp"
 
-void gameFunction(sf::RenderWindow& window)
+void gameFunction(sf::RenderWindow& window, float screen_width, float screen_height)
 {
 	std::srand(time(NULL));
 	sf::Texture background_texture;
@@ -12,7 +13,9 @@ void gameFunction(sf::RenderWindow& window)
 		std::cout << "ERROR: Cannot load background image";
 	}
 	background.setTexture(background_texture);
-	background.setPosition(sf::Vector2f(0, 0));
+	float background_x = -55;
+	float background_y = -180;
+	background.setPosition(sf::Vector2f(background_x, background_y));
 	window.setFramerateLimit(60);
 
 	// Create player
@@ -23,15 +26,24 @@ void gameFunction(sf::RenderWindow& window)
 	Player player(plr_width, plr_height, plr_x, plr_y);
 
 	// Create bullet variables
-	float bullet_width = 5;
-	float bullet_height = 5;
-	float bullet_x = 645;
+	float bullet_width = 3;
+	float bullet_height = 3;
+	float bullet_x = 640;
 	float bullet_y = 505;
-	float bullet_speed = 10;
+	float bullet_speed = 20;
+	unsigned int reload_timer = 0;
+	int cooldown = 10;
+	bool bullet_firing = false;
 	Bullet bullet(bullet_width, bullet_height);
 	std::vector<Bullet> bullet_vector;
-	bool bullet_firing = false;
-	unsigned int reload_timer = 0;
+
+	// Create dinosaur variables
+	float dino_width = 20;
+	float dino_height = 20;
+	float dino_speed = 5;
+	bool dino_dead = false;
+	std::vector<Dinosaurs> dino_vector;
+	long unsigned int max_dinos = 2;
 
 	while (window.isOpen())
 	{
@@ -43,10 +55,13 @@ void gameFunction(sf::RenderWindow& window)
 				window.close();
 			}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+			// If space is pressed fire bullet
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)
+				|| sf::Keyboard::isKeyPressed(sf::Keyboard::S)
+				|| sf::Keyboard::isKeyPressed(sf::Keyboard::A)
+				|| sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			{
 				bullet_firing = true;
-				reload_timer++;
 			}
 		}
 		window.clear();
@@ -60,7 +75,7 @@ void gameFunction(sf::RenderWindow& window)
 				bullet.fireBullet(player, bullet_speed);
 				bullet.setPos(bullet_x, bullet_y);
 				bullet_firing = false;
-				reload_timer += 5;
+				reload_timer += cooldown;
 				bullet_vector.push_back(bullet);
 			}
 		}
@@ -74,9 +89,44 @@ void gameFunction(sf::RenderWindow& window)
 		{
 			bullet_vector[i].moveBullet();
 			bullet_vector[i].drawTo(window);
+
+			// If the bullet goes off screen, delete it
+			if (bullet_vector[i].returnX() > screen_width
+				|| bullet_vector[i].returnX() < 0
+				|| bullet_vector[i].returnY() > screen_height
+				|| bullet_vector[i].returnY() < 0)
+			{
+				bullet_vector.erase(bullet_vector.begin() + i);
+			}
 		}
 
-		std::cout << bullet_vector.size() << "\n";
+		// Create dinosaurs
+		Dinosaurs dinosaur(dino_width, dino_height);
+		dinosaur.spawnDinosaurs(screen_width, screen_height);
+
+		// Push dinosaurs to dino_vector
+		if (dino_vector.size() < max_dinos)
+		{
+			dino_vector.push_back(dinosaur);
+		}
+
+		for (long unsigned int i = 0; i != dino_vector.size(); i++)
+		{
+			// If dino_dead == false, spawn and move dinosaurs
+			if (!dino_dead)
+			{
+				dino_vector[i].moveDinosaurs(dino_speed);
+				dino_vector[i].drawTo(window);
+			}
+			dino_vector[i].killDinosaurs(dino_dead, player);
+
+			// If dino_dead == true, delete dinosaur
+			if (dino_dead)
+			{
+				dino_vector.erase(dino_vector.begin() + i);
+				dino_dead = false;
+			}
+		}
 
 		player.drawTo(window);
 		player.changePlayerTexture();
