@@ -80,3 +80,8 @@ void Dinosaurs::killDinosaurs(bool& dino_dead, Player& player_rect)
 		dino_dead = true;
 	}
 }
+
+void Dinosaurs::resetDinosaur(float screen_width, float screen_height)
+{
+	spawnDinosaurs(screen_width, screen_height);
+}

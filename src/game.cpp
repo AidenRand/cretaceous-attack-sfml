@@ -111,9 +111,12 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 			dinosaur.drawTo(window);
 		}
 		dinosaur.killDinosaurs(dino_dead, player);
-		// If dino_dead == true, delete dinosaur
+
+		// If dino_dead == true, reset dinosaur
 		if (dino_dead)
 		{
+			dinosaur.resetDinosaur(screen_width, screen_height);
+			dinosaur.moveDinosaurs(dino_speed);
 			dino_dead = false;
 		}
 
