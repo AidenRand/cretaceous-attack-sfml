@@ -16,24 +16,36 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	{
 		side_spawn.x = screen_width / 2;
 		side_spawn.y = 0;
+		move_up = false;
 		move_down = true;
+		move_left = false;
+		move_right = false;
 	}
 	else if (random_side == 1)
 	{
 		side_spawn.x = screen_width;
 		side_spawn.y = screen_height / 2;
+		move_up = false;
+		move_down = false;
 		move_left = true;
+		move_right = false;
 	}
 	else if (random_side == 2)
 	{
 		side_spawn.x = screen_width / 2;
 		side_spawn.y = screen_height;
 		move_up = true;
+		move_down = false;
+		move_left = false;
+		move_right = false;
 	}
 	else if (random_side == 3)
 	{
 		side_spawn.x = 0;
 		side_spawn.y = screen_height / 2;
+		move_up = false;
+		move_down = false;
+		move_left = false;
 		move_right = true;
 	}
 	dinosaur.setPosition(side_spawn);

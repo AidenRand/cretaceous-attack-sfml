@@ -22,10 +22,10 @@ private:
 	int random_side;
 	sf::Vector2f side_spawn;
 
-	bool move_up = false;
-	bool move_down = false;
-	bool move_left = false;
-	bool move_right = false;
+	bool move_up;
+	bool move_down;
+	bool move_left;
+	bool move_right;
 };
 
 #endif

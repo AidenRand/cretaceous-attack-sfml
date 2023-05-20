@@ -26,8 +26,8 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	Player player(plr_width, plr_height, plr_x, plr_y);
 
 	// Create bullet variables
-	float bullet_width = 30;
-	float bullet_height = 30;
+	float bullet_width = 5;
+	float bullet_height = 5;
 	float bullet_x = 640;
 	float bullet_y = 505;
 	float bullet_speed = 50;
@@ -116,7 +116,6 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		if (dino_dead)
 		{
 			dinosaur.resetDinosaur(screen_width, screen_height);
-			dinosaur.moveDinosaurs(dino_speed);
 			dino_dead = false;
 		}
 
