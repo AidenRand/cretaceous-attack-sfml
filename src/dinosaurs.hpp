@@ -12,18 +12,14 @@ public:
 	void drawTo(sf::RenderWindow& window);
 	void moveDinosaurs(float dino_speed);
 	void killDinosaurs(bool& dino_dead, Player& player_rect);
+	sf::RectangleShape dinosaur;
 
 private:
-	sf::RectangleShape dinosaur;
-	sf::Vector2f position;
 	sf::Vector2f direction;
 
 	// Coordinates for spawn locations on four sides of window
 	int random_side;
-	sf::Vector2f side_one;
-	sf::Vector2f side_two;
-	sf::Vector2f side_three;
-	sf::Vector2f side_four;
+	sf::Vector2f side_spawn;
 
 	bool move_up = false;
 	bool move_down = false;

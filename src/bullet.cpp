@@ -1,4 +1,5 @@
 #include "bullet.hpp"
+#include "dinosaurs.hpp"
 #include "player.hpp"
 
 Bullet::Bullet(float bullet_width, float bullet_height)
@@ -43,6 +44,17 @@ void Bullet::fireBullet(Player& player_rect, float bullet_speed)
 	{
 		bullet_dir.x = 0;
 		bullet_dir.y = bullet_speed;
+	}
+}
+
+void Bullet::bulletCollision(Dinosaurs& dino_rect, bool& dino_dead)
+{
+	auto dinosaur = dino_rect.dinosaur;
+
+	// If bullet collides with dinosaur set dino_dead to true
+	if (dinosaur.getGlobalBounds().intersects(bullet.getGlobalBounds()))
+	{
+		dino_dead = true;
 	}
 }
 
