@@ -14,33 +14,29 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	// Spawn dinosaur on side corresponding to random number generated
 	if (random_side == 0)
 	{
-		side_one.x = screen_width / 2;
-		side_one.y = 0;
-		position = side_one;
+		side_spawn.x = screen_width / 2;
+		side_spawn.y = 0;
 		move_down = true;
 	}
 	else if (random_side == 1)
 	{
-		side_two.x = screen_width;
-		side_two.y = screen_height / 2;
-		position = side_two;
+		side_spawn.x = screen_width;
+		side_spawn.y = screen_height / 2;
 		move_left = true;
 	}
 	else if (random_side == 2)
 	{
-		side_three.x = screen_width / 2;
-		side_three.y = screen_height;
-		position = side_three;
+		side_spawn.x = screen_width / 2;
+		side_spawn.y = screen_height;
 		move_up = true;
 	}
 	else if (random_side == 3)
 	{
-		side_four.x = 0;
-		side_four.y = screen_height / 2;
-		position = side_four;
+		side_spawn.x = 0;
+		side_spawn.y = screen_height / 2;
 		move_right = true;
 	}
-	dinosaur.setPosition(position);
+	dinosaur.setPosition(side_spawn);
 }
 
 void Dinosaurs::drawTo(sf::RenderWindow& window)
@@ -78,7 +74,7 @@ void Dinosaurs::killDinosaurs(bool& dino_dead, Player& player_rect)
 {
 	auto player = player_rect.player;
 
-	// If dino and player collide set dino_dead to true
+	// If dino and player collide set dino_dead = true
 	if (dinosaur.getGlobalBounds().intersects(player.getGlobalBounds()))
 	{
 		dino_dead = true;

@@ -26,11 +26,11 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	Player player(plr_width, plr_height, plr_x, plr_y);
 
 	// Create bullet variables
-	float bullet_width = 3;
-	float bullet_height = 3;
+	float bullet_width = 30;
+	float bullet_height = 30;
 	float bullet_x = 640;
 	float bullet_y = 505;
-	float bullet_speed = 20;
+	float bullet_speed = 50;
 	unsigned int reload_timer = 0;
 	int cooldown = 10;
 	bool bullet_firing = false;
@@ -40,10 +40,12 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	// Create dinosaur variables
 	float dino_width = 20;
 	float dino_height = 20;
-	float dino_speed = 5;
+	float dino_speed = 10;
 	bool dino_dead = false;
-	std::vector<Dinosaurs> dino_vector;
-	long unsigned int max_dinos = 2;
+
+	// Create dinosaurs
+	Dinosaurs dinosaur(dino_width, dino_height);
+	dinosaur.spawnDinosaurs(screen_width, screen_height);
 
 	while (window.isOpen())
 	{
@@ -89,6 +91,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		{
 			bullet_vector[i].moveBullet();
 			bullet_vector[i].drawTo(window);
+			bullet_vector[i].bulletCollision(dinosaur, dino_dead);
 
 			// If the bullet goes off screen, delete it
 			if (bullet_vector[i].returnX() > screen_width
@@ -100,32 +103,18 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 			}
 		}
 
-		// Create dinosaurs
-		Dinosaurs dinosaur(dino_width, dino_height);
-		dinosaur.spawnDinosaurs(screen_width, screen_height);
-
-		// Push dinosaurs to dino_vector
-		if (dino_vector.size() < max_dinos)
+		// If dinosaur is not dead move and spawn dinosaur,
+		// If dinosaur is dead give dinosaur new position
+		if (!dino_dead)
 		{
-			dino_vector.push_back(dinosaur);
+			dinosaur.moveDinosaurs(dino_speed);
+			dinosaur.drawTo(window);
 		}
-
-		for (long unsigned int i = 0; i != dino_vector.size(); i++)
+		dinosaur.killDinosaurs(dino_dead, player);
+		// If dino_dead == true, delete dinosaur
+		if (dino_dead)
 		{
-			// If dino_dead == false, spawn and move dinosaurs
-			if (!dino_dead)
-			{
-				dino_vector[i].moveDinosaurs(dino_speed);
-				dino_vector[i].drawTo(window);
-			}
-			dino_vector[i].killDinosaurs(dino_dead, player);
-
-			// If dino_dead == true, delete dinosaur
-			if (dino_dead)
-			{
-				dino_vector.erase(dino_vector.begin() + i);
-				dino_dead = false;
-			}
+			dino_dead = false;
 		}
 
 		player.drawTo(window);
