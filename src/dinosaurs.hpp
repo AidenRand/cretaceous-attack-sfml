@@ -12,6 +12,7 @@ public:
 	void drawTo(sf::RenderWindow& window);
 	void moveDinosaurs(float dino_speed);
 	void killDinosaurs(bool& dino_dead, Player& player_rect);
+	void resetDinosaur(float screen_width, float screen_height);
 	sf::RectangleShape dinosaur;
 
 private:
