@@ -6,5 +6,6 @@ int main()
 	float screen_width = 1280;
 	float screen_height = 1024;
 	sf::RenderWindow window(sf::VideoMode(screen_width, screen_height), "Cretaceous Attack");
+	window.setFramerateLimit(60);
 	gameFunction(window, screen_width, screen_height);
 }
