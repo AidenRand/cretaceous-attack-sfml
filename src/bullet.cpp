@@ -47,7 +47,7 @@ void Bullet::fireBullet(Player& player_rect, float bullet_speed)
 	}
 }
 
-void Bullet::bulletCollision(Dinosaurs& dino_rect, bool& dino_dead, bool& bullet_dead)
+void Bullet::bulletCollision(Dinosaurs& dino_rect, bool& dino_dead, bool& bullet_dead, float screen_width, float screen_height)
 {
 	auto dinosaur = dino_rect.dinosaur;
 
@@ -59,9 +59,9 @@ void Bullet::bulletCollision(Dinosaurs& dino_rect, bool& dino_dead, bool& bullet
 	}
 
 	// If bullet goes beyond window border, delete bullet
-	if (bullet.getPosition().x > 1280
+	if (bullet.getPosition().x > screen_width
 		|| bullet.getPosition().x < 0
-		|| bullet.getPosition().y > 1024
+		|| bullet.getPosition().y > screen_height
 		|| bullet.getPosition().y < 0)
 	{
 		bullet_dead = true;

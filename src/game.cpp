@@ -93,7 +93,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		{
 			bullet_vector[i].moveBullet();
 			bullet_vector[i].drawTo(window);
-			bullet_vector[i].bulletCollision(dinosaur, dino_dead, bullet_dead);
+			bullet_vector[i].bulletCollision(dinosaur, dino_dead, bullet_dead, screen_height, screen_width);
 
 			// If the bullet goes off screen, delete it
 			if (bullet_dead)
