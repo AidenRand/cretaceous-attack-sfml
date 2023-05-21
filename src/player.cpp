@@ -6,10 +6,10 @@ Player::Player(float plr_width, float plr_height, float plr_x, float plr_y)
 	player.setPosition(sf::Vector2f(plr_x, plr_y));
 
 	// Fetch shooting player textures
-	up_texture.loadFromFile("content/forward-gun.png");
-	down_texture.loadFromFile("content/downward-gun.png");
-	left_texture.loadFromFile("content/left-gun.png");
-	right_texture.loadFromFile("content/right-gun.png");
+	up_texture.loadFromFile("content/forward-player.png");
+	down_texture.loadFromFile("content/downward-player.png");
+	left_texture.loadFromFile("content/left-player.png");
+	right_texture.loadFromFile("content/right-player.png");
 
 	player.setTexture(down_texture);
 }

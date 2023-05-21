@@ -10,13 +10,13 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 
 	sf::Texture background_texture;
 	sf::Sprite background;
-	if (!background_texture.loadFromFile("content/background.png"))
+	if (!background_texture.loadFromFile("content/background.jpeg"))
 	{
 		std::cout << "ERROR: Cannot load background image";
 	}
 	background.setTexture(background_texture);
-	float background_x = -55;
-	float background_y = -180;
+	float background_x = 10;
+	float background_y = -120;
 	background.setPosition(sf::Vector2f(background_x, background_y));
 
 	// Score variables
