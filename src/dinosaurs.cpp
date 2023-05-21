@@ -3,9 +3,13 @@
 
 Dinosaurs::Dinosaurs(float dino_width, float dino_height)
 {
-	dinosaur.setSize(sf::Vector2f(dino_width, dino_height));
-	dinosaur.setOrigin(dino_width / 2, dino_height / 2);
-	dinosaur.setFillColor(sf::Color(255, 255, 255));
+	dinosaur.setOrigin(dino_width, dino_height);
+
+	// Fetch dinosaur textures
+	top_dino_texture.loadFromFile("content/top-dinosaur.png");
+	bottom_dino_texture.loadFromFile("content/bottom-dinosaur.png");
+	left_dino_texture.loadFromFile("content/left-dinosaur.png");
+	right_dino_texture.loadFromFile("content/right-dinosaur.png");
 }
 
 void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
@@ -14,6 +18,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	// Spawn dinosaur on side corresponding to random number generated
 	if (random_side == 0)
 	{
+		dinosaur.setTexture(top_dino_texture, true);
 		side_spawn.x = screen_width / 2;
 		side_spawn.y = 0;
 		move_up = false;
@@ -23,8 +28,9 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	}
 	else if (random_side == 1)
 	{
+		dinosaur.setTexture(right_dino_texture, true);
 		side_spawn.x = screen_width;
-		side_spawn.y = screen_height / 2;
+		side_spawn.y = (screen_height / 2) - 20;
 		move_up = false;
 		move_down = false;
 		move_left = true;
@@ -32,6 +38,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	}
 	else if (random_side == 2)
 	{
+		dinosaur.setTexture(bottom_dino_texture, true);
 		side_spawn.x = screen_width / 2;
 		side_spawn.y = screen_height;
 		move_up = true;
@@ -41,8 +48,9 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	}
 	else if (random_side == 3)
 	{
+		dinosaur.setTexture(left_dino_texture, true);
 		side_spawn.x = 0;
-		side_spawn.y = screen_height / 2;
+		side_spawn.y = (screen_height / 2) - 20;
 		move_up = false;
 		move_down = false;
 		move_left = false;

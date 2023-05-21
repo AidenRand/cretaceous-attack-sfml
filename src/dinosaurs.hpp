@@ -13,7 +13,7 @@ public:
 	void moveDinosaurs(float dino_speed);
 	void killDinosaurs(bool& dino_dead, Player& player_rect);
 	void resetDinosaur(float screen_width, float screen_height);
-	sf::RectangleShape dinosaur;
+	sf::Sprite dinosaur;
 
 private:
 	sf::Vector2f direction;
@@ -21,6 +21,11 @@ private:
 	// Coordinates for spawn locations on four sides of window
 	int random_side;
 	sf::Vector2f side_spawn;
+
+	sf::Texture top_dino_texture;
+	sf::Texture bottom_dino_texture;
+	sf::Texture left_dino_texture;
+	sf::Texture right_dino_texture;
 
 	bool move_up;
 	bool move_down;

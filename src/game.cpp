@@ -16,6 +16,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	float background_x = -55;
 	float background_y = -180;
 	background.setPosition(sf::Vector2f(background_x, background_y));
+
 	window.setFramerateLimit(60);
 
 	// Create player
@@ -38,8 +39,8 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	std::vector<Bullet> bullet_vector;
 
 	// Create dinosaur variables
-	float dino_width = 20;
-	float dino_height = 20;
+	float dino_width = 1;
+	float dino_height = 1;
 	float dino_speed = 10;
 	bool dino_dead = false;
 
@@ -110,6 +111,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 			dinosaur.moveDinosaurs(dino_speed);
 			dinosaur.drawTo(window);
 		}
+
 		dinosaur.killDinosaurs(dino_dead, player);
 
 		// If dino_dead == true, reset dinosaur
