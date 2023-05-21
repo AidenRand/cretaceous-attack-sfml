@@ -1,7 +1,7 @@
 #include "game.hpp"
 #include "bullet.hpp"
 #include "dinosaurs.hpp"
-#include "game_logic.hpp"
+#include "logic.hpp"
 #include "player.hpp"
 
 void gameFunction(sf::RenderWindow& window, float screen_width, float screen_height)
@@ -23,6 +23,11 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	int score = 0;
 	float score_x = 100.0;
 	float score_y = 50.0;
+
+	// Lives left variables
+	int lives_left = 5;
+	float lives_x = 1150.0;
+	float lives_y = 50.0;
 
 	// Create player
 	float plr_width = 1;
@@ -47,7 +52,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	// Dinosaur variables
 	float dino_width = 1;
 	float dino_height = 1;
-	float dino_speed = 15;
+	float dino_speed = 10;
 	bool dino_dead = false;
 
 	// Create dinosaurs
@@ -125,9 +130,10 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		}
 
 		// Create score and lives left
-		Logic logic(score, score_x, score_y);
+		Logic logic(score, score_x, score_y, lives_left, lives_x, lives_y);
 
 		logic.drawScore(window);
+		logic.drawLives(window);
 		player.drawTo(window);
 		player.changePlayerTexture();
 		window.display();
