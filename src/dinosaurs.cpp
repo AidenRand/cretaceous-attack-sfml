@@ -90,14 +90,16 @@ void Dinosaurs::moveDinosaurs(float dino_speed)
 	dinosaur.move(direction);
 }
 
-void Dinosaurs::killDinosaurs(bool& dino_dead, Player& player_rect)
+void Dinosaurs::killDinosaurs(bool& dino_dead, Player& player_rect, int& lives_left)
 {
 	auto player = player_rect.player;
 
 	// If dino and player collide set dino_dead = true
+	// and decrement lives_left
 	if (dinosaur.getGlobalBounds().intersects(player.getGlobalBounds()))
 	{
 		dino_dead = true;
+		lives_left--;
 	}
 }
 
