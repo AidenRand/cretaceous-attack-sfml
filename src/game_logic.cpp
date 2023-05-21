@@ -9,14 +9,6 @@ Logic::Logic(int& score_num, float score_x, float score_y)
 	font.loadFromFile("content/8_bit_party.ttf");
 }
 
-void Logic::increaseScore(int& score_num, bool& dino_dead)
-{
-	if (dino_dead)
-	{
-		score_num++;
-	}
-}
-
 void Logic::drawScore(sf::RenderWindow& window)
 {
 

@@ -23,7 +23,6 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	int score = 0;
 	float score_x = 100.0;
 	float score_y = 50.0;
-	Logic logic(score, score_x, score_y);
 
 	// Create player
 	float plr_width = 1;
@@ -48,7 +47,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	// Dinosaur variables
 	float dino_width = 1;
 	float dino_height = 1;
-	float dino_speed = 10;
+	float dino_speed = 15;
 	bool dino_dead = false;
 
 	// Create dinosaurs
@@ -99,7 +98,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		{
 			bullet_vector[i].moveBullet();
 			bullet_vector[i].drawTo(window);
-			bullet_vector[i].bulletCollision(dinosaur, dino_dead, bullet_dead, screen_height, screen_width);
+			bullet_vector[i].bulletCollision(dinosaur, dino_dead, bullet_dead, score, screen_height, screen_width);
 
 			// If the bullet goes off screen, delete it
 			if (bullet_dead)
@@ -125,7 +124,9 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 			dino_dead = false;
 		}
 
-		logic.increaseScore(score, dino_dead);
+		// Create score and lives left
+		Logic logic(score, score_x, score_y);
+
 		logic.drawScore(window);
 		player.drawTo(window);
 		player.changePlayerTexture();

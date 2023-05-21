@@ -7,7 +7,6 @@ class Logic
 {
 public:
 	Logic(int& score_num, float score_x, float score_y);
-	void increaseScore(int& score_num, bool& dino_dead);
 	void drawScore(sf::RenderWindow& window);
 
 private:

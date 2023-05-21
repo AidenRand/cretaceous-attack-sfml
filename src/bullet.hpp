@@ -12,7 +12,7 @@ public:
 	void drawTo(sf::RenderWindow& window);
 	void setPos(float player_x, float player_y);
 	void fireBullet(Player& player_rect, float bullet_speed);
-	void bulletCollision(Dinosaurs& dino_rect, bool& dino_dead, bool& bullet_dead, float screen_width, float screen_height);
+	void bulletCollision(Dinosaurs& dino_rect, bool& dino_dead, bool& bullet_dead, int& score, float screen_width, float screen_height);
 	void moveBullet();
 	float returnX();
 	float returnY();

@@ -47,7 +47,7 @@ void Bullet::fireBullet(Player& player_rect, float bullet_speed)
 	}
 }
 
-void Bullet::bulletCollision(Dinosaurs& dino_rect, bool& dino_dead, bool& bullet_dead, float screen_width, float screen_height)
+void Bullet::bulletCollision(Dinosaurs& dino_rect, bool& dino_dead, bool& bullet_dead, int& score, float screen_width, float screen_height)
 {
 	auto dinosaur = dino_rect.dinosaur;
 
@@ -56,6 +56,7 @@ void Bullet::bulletCollision(Dinosaurs& dino_rect, bool& dino_dead, bool& bullet
 	{
 		bullet_dead = true;
 		dino_dead = true;
+		score++;
 	}
 
 	// If bullet goes beyond window border, delete bullet
