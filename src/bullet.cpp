@@ -47,14 +47,24 @@ void Bullet::fireBullet(Player& player_rect, float bullet_speed)
 	}
 }
 
-void Bullet::bulletCollision(Dinosaurs& dino_rect, bool& dino_dead)
+void Bullet::bulletCollision(Dinosaurs& dino_rect, bool& dino_dead, bool& bullet_dead)
 {
 	auto dinosaur = dino_rect.dinosaur;
 
-	// If bullet collides with dinosaur set dino_dead to true
-	if (dinosaur.getGlobalBounds().intersects(bullet.getGlobalBounds()))
+	// If bullet collides with dinosaur, delete bullet and dinosaur
+	if (bullet.getGlobalBounds().intersects(dinosaur.getGlobalBounds()))
 	{
+		bullet_dead = true;
 		dino_dead = true;
+	}
+
+	// If bullet goes beyond window border, delete bullet
+	if (bullet.getPosition().x > 1280
+		|| bullet.getPosition().x < 0
+		|| bullet.getPosition().y > 1024
+		|| bullet.getPosition().y < 0)
+	{
+		bullet_dead = true;
 	}
 }
 

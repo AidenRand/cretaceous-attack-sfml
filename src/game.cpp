@@ -32,11 +32,12 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	float bullet_x = 640;
 	float bullet_y = 505;
 	float bullet_speed = 50;
-	unsigned int reload_timer = 0;
 	int cooldown = 10;
+	unsigned int reload_timer = 0;
 	bool bullet_firing = false;
-	Bullet bullet(bullet_width, bullet_height);
+	bool bullet_dead = false;
 	std::vector<Bullet> bullet_vector;
+	Bullet bullet(bullet_width, bullet_height);
 
 	// Create dinosaur variables
 	float dino_width = 1;
@@ -92,15 +93,13 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		{
 			bullet_vector[i].moveBullet();
 			bullet_vector[i].drawTo(window);
-			bullet_vector[i].bulletCollision(dinosaur, dino_dead);
+			bullet_vector[i].bulletCollision(dinosaur, dino_dead, bullet_dead);
 
 			// If the bullet goes off screen, delete it
-			if (bullet_vector[i].returnX() > screen_width
-				|| bullet_vector[i].returnX() < 0
-				|| bullet_vector[i].returnY() > screen_height
-				|| bullet_vector[i].returnY() < 0)
+			if (bullet_dead)
 			{
 				bullet_vector.erase(bullet_vector.begin() + i);
+				bullet_dead = false;
 			}
 		}
 
@@ -111,7 +110,6 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 			dinosaur.moveDinosaurs(dino_speed);
 			dinosaur.drawTo(window);
 		}
-
 		dinosaur.killDinosaurs(dino_dead, player);
 
 		// If dino_dead == true, reset dinosaur
