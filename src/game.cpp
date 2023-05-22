@@ -55,14 +55,14 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	Bullet bullet(bullet_width, bullet_height);
 
 	// Dinosaur variables
-	float dino_width = 1;
-	float dino_height = 1;
+	float dino_width = 128;
+	float dino_height = 64;
 	int dino_speed = 10;
 	bool dino_dead = false;
 
 	// Create dinosaurs
-	Dinosaurs dinosaur(dino_width, dino_height);
-	dinosaur.spawnDinosaurs(screen_width, screen_height, dino_height, dino_width);
+	Dinosaur dinosaur(dino_width, dino_height);
+	dinosaur.spawnDinosaur(screen_width, screen_height, dino_height, dino_width);
 
 	while (window.isOpen())
 	{
@@ -122,15 +122,15 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		// If dinosaur is dead give dinosaur new position
 		if (!dino_dead)
 		{
-			dinosaur.moveDinosaurs(dino_speed);
+			dinosaur.moveDinosaur(dino_speed);
 			dinosaur.drawTo(window);
 		}
-		dinosaur.killDinosaurs(dino_dead, player, lives_left);
+		dinosaur.killDinosaur(dino_dead, player, lives_left);
 
 		// If dino_dead == true, reset dinosaur
 		if (dino_dead)
 		{
-			dinosaur.spawnDinosaurs(screen_width, screen_height, dino_height, dino_width);
+			dinosaur.spawnDinosaur(screen_width, screen_height, dino_height, dino_width);
 			dino_dead = false;
 		}
 

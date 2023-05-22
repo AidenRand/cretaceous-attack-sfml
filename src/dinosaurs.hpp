@@ -4,14 +4,14 @@
 #include "player.hpp"
 #include <SFML/Graphics.hpp>
 
-class Dinosaurs
+class Dinosaur
 {
 public:
-	Dinosaurs(float dino_width, float dino_height);
-	void spawnDinosaurs(float screen_width, float screen_height, float& dino_width, float& dino_height);
+	Dinosaur(float dino_width, float dino_height);
+	void spawnDinosaur(float screen_width, float screen_height, float& dino_width, float& dino_height);
 	void drawTo(sf::RenderWindow& window);
-	void moveDinosaurs(int dino_speed);
-	void killDinosaurs(bool& dino_dead, Player& player_rect, int& lives_left);
+	void moveDinosaur(int dino_speed);
+	void killDinosaur(bool& dino_dead, Player& player_rect, int& lives_left);
 	sf::Sprite dinosaur;
 
 private:
@@ -20,7 +20,7 @@ private:
 	// Coordinates for spawn locations on four sides of window
 	int random_side;
 	sf::Vector2f side_spawn;
-	int placement_correction = 20;
+	int placement_correction = 30;
 
 	sf::Texture top_dino_texture;
 	sf::Texture bottom_dino_texture;

@@ -47,7 +47,7 @@ void Bullet::fireBullet(Player& player_rect, int bullet_speed)
 	}
 }
 
-void Bullet::bulletCollision(Dinosaurs& dino_rect, bool& dino_dead, bool& bullet_dead, int& score, float screen_width, float screen_height)
+void Bullet::bulletCollision(Dinosaur& dino_rect, bool& dino_dead, bool& bullet_dead, int& score, float screen_width, float screen_height)
 {
 	auto dinosaur = dino_rect.dinosaur;
 

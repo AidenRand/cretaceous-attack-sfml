@@ -1,9 +1,9 @@
 #include "dinosaurs.hpp"
 #include "player.hpp"
 
-Dinosaurs::Dinosaurs(float dino_width, float dino_height)
+Dinosaur::Dinosaur(float dino_width, float dino_height)
 {
-	dinosaur.setOrigin(dino_width, dino_height);
+	dinosaur.setOrigin(dino_width / 2, dino_height / 2);
 
 	// Fetch dinosaur textures
 	top_dino_texture.loadFromFile("content/top-dinosaur.png");
@@ -12,14 +12,15 @@ Dinosaurs::Dinosaurs(float dino_width, float dino_height)
 	right_dino_texture.loadFromFile("content/right-dinosaur.png");
 }
 
-void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height, float& dino_width, float& dino_height)
+void Dinosaur::spawnDinosaur(float screen_width, float screen_height, float& dino_width, float& dino_height)
 {
 	random_side = rand() % 4;
+	std::cout << dino_width << "\n";
 	// Spawn dinosaur on side corresponding to random number generated
 	if (random_side == 0)
 	{
 		dinosaur.setTexture(top_dino_texture, true);
-		side_spawn.x = (screen_width / 2) - placement_correction;
+		side_spawn.x = (screen_width / 2) + placement_correction;
 		side_spawn.y = -dino_height;
 		move_up = false;
 		move_down = true;
@@ -30,7 +31,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height, float& d
 	{
 		dinosaur.setTexture(right_dino_texture, true);
 		side_spawn.x = screen_width + dino_width;
-		side_spawn.y = (screen_height / 2) - placement_correction;
+		side_spawn.y = (screen_height / 2);
 		move_up = false;
 		move_down = false;
 		move_left = true;
@@ -39,7 +40,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height, float& d
 	else if (random_side == 2)
 	{
 		dinosaur.setTexture(bottom_dino_texture, true);
-		side_spawn.x = (screen_width / 2) - placement_correction;
+		side_spawn.x = (screen_width / 2) + placement_correction;
 		side_spawn.y = screen_height + dino_width;
 		move_up = true;
 		move_down = false;
@@ -49,8 +50,8 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height, float& d
 	else if (random_side == 3)
 	{
 		dinosaur.setTexture(left_dino_texture, true);
-		side_spawn.x = -dino_width;
-		side_spawn.y = (screen_height / 2) - placement_correction - 10;
+		side_spawn.x = -dino_width - placement_correction;
+		side_spawn.y = (screen_height / 2);
 		move_up = false;
 		move_down = false;
 		move_left = false;
@@ -59,12 +60,12 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height, float& d
 	dinosaur.setPosition(side_spawn);
 }
 
-void Dinosaurs::drawTo(sf::RenderWindow& window)
+void Dinosaur::drawTo(sf::RenderWindow& window)
 {
 	window.draw(dinosaur);
 }
 
-void Dinosaurs::moveDinosaurs(int dino_speed)
+void Dinosaur::moveDinosaur(int dino_speed)
 {
 	// Move in direction corresponding to side generated
 	if (move_down)
@@ -90,7 +91,7 @@ void Dinosaurs::moveDinosaurs(int dino_speed)
 	dinosaur.move(direction);
 }
 
-void Dinosaurs::killDinosaurs(bool& dino_dead, Player& player_rect, int& lives_left)
+void Dinosaur::killDinosaur(bool& dino_dead, Player& player_rect, int& lives_left)
 {
 	auto player = player_rect.player;
 
