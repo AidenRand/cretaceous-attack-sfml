@@ -19,7 +19,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	if (random_side == 0)
 	{
 		dinosaur.setTexture(top_dino_texture, true);
-		side_spawn.x = screen_width / 2;
+		side_spawn.x = (screen_width / 2) - placement_correction;
 		side_spawn.y = 0;
 		move_up = false;
 		move_down = true;
@@ -30,7 +30,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	{
 		dinosaur.setTexture(right_dino_texture, true);
 		side_spawn.x = screen_width;
-		side_spawn.y = (screen_height / 2) - 20;
+		side_spawn.y = (screen_height / 2) - placement_correction;
 		move_up = false;
 		move_down = false;
 		move_left = true;
@@ -39,7 +39,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	else if (random_side == 2)
 	{
 		dinosaur.setTexture(bottom_dino_texture, true);
-		side_spawn.x = screen_width / 2;
+		side_spawn.x = (screen_width / 2) - placement_correction;
 		side_spawn.y = screen_height;
 		move_up = true;
 		move_down = false;
@@ -50,7 +50,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	{
 		dinosaur.setTexture(left_dino_texture, true);
 		side_spawn.x = 0;
-		side_spawn.y = (screen_height / 2) - 30;
+		side_spawn.y = (screen_height / 2) - placement_correction - 10;
 		move_up = false;
 		move_down = false;
 		move_left = false;

@@ -8,6 +8,8 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 {
 	std::srand(time(NULL));
 
+	// bool end_game = false;
+
 	sf::Texture background_texture;
 	sf::Sprite background;
 	if (!background_texture.loadFromFile("content/background.jpeg"))
@@ -41,7 +43,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	float bullet_height = 5;
 	float bullet_x = 640;
 	float bullet_y = 505;
-	float bullet_speed = 50;
+	float bullet_speed = 40;
 	int cooldown = 10;
 	unsigned int reload_timer = 0;
 	bool bullet_firing = false;

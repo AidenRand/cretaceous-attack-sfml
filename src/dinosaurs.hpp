@@ -21,6 +21,7 @@ private:
 	// Coordinates for spawn locations on four sides of window
 	int random_side;
 	sf::Vector2f side_spawn;
+	int placement_correction = 20;
 
 	sf::Texture top_dino_texture;
 	sf::Texture bottom_dino_texture;
