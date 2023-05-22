@@ -20,8 +20,8 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	background.setPosition(sf::Vector2f(background_x, background_y));
 
 	// End game text variables
-	std::string end_text_string = "Press space to play again";
-	float end_text_x = 600;
+	std::string end_text_string = "Press space \t\t\t\t to play again";
+	float end_text_x = 190;
 	float end_text_y = 500;
 
 	// Score variables
@@ -138,11 +138,17 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		player.changePlayerTexture();
 
 		// Create score and lives left
-		Logic logic(score, score_x, score_y, lives_left, lives_x, lives_y, end_text_string, end_text_x, end_text_y);
+		std::string font_file = "content/8_bit_party.ttf";
+		Logic logic(font_file);
+		logic.makeScore(score, score_x, score_y);
 		logic.drawScore(window);
+		logic.makeLives(lives_left, lives_x, lives_y);
 		logic.drawLives(window);
+
+		// If no lives left, end game
 		if (lives_left == 0)
 		{
+			logic.makeEndText(end_text_string, end_text_x, end_text_y);
 			logic.endGame(window, score, lives_left, dino_speed);
 		}
 
