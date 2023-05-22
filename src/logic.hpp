@@ -6,10 +6,10 @@
 class Logic
 {
 public:
-	Logic(int& score_num, float score_x, float score_y, int& lives_num, float lives_x, float lives_y);
+	Logic(int& score_num, float score_x, float score_y, int& lives_num, float lives_x, float lives_y, std::string end_text_string, float& end_text_x, float& end_text_y);
 	void drawScore(sf::RenderWindow& window);
 	void drawLives(sf::RenderWindow& window);
-	void endGame(bool& end_game, int& lives_left);
+	void endGame(sf::RenderWindow& window, int& score, int& lives_left, int& dino_speed);
 
 private:
 	sf::Font font;
@@ -18,6 +18,7 @@ private:
 
 	sf::Text score_text;
 	sf::Text lives_left;
+	sf::Text end_text;
 };
 
 #endif

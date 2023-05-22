@@ -8,11 +8,10 @@ class Dinosaurs
 {
 public:
 	Dinosaurs(float dino_width, float dino_height);
-	void spawnDinosaurs(float screen_width, float screen_height);
+	void spawnDinosaurs(float screen_width, float screen_height, float& dino_width, float& dino_height);
 	void drawTo(sf::RenderWindow& window);
-	void moveDinosaurs(float dino_speed);
+	void moveDinosaurs(int dino_speed);
 	void killDinosaurs(bool& dino_dead, Player& player_rect, int& lives_left);
-	void resetDinosaur(float screen_width, float screen_height);
 	sf::Sprite dinosaur;
 
 private:

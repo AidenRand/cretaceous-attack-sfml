@@ -18,7 +18,7 @@ void Bullet::setPos(float player_x, float player_y)
 	bullet.setPosition(sf::Vector2f(player_x, player_y));
 }
 
-void Bullet::fireBullet(Player& player_rect, float bullet_speed)
+void Bullet::fireBullet(Player& player_rect, int bullet_speed)
 {
 	auto player = player_rect.player;
 

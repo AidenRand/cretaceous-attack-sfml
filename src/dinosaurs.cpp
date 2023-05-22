@@ -12,7 +12,7 @@ Dinosaurs::Dinosaurs(float dino_width, float dino_height)
 	right_dino_texture.loadFromFile("content/right-dinosaur.png");
 }
 
-void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
+void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height, float& dino_width, float& dino_height)
 {
 	random_side = rand() % 4;
 	// Spawn dinosaur on side corresponding to random number generated
@@ -20,7 +20,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	{
 		dinosaur.setTexture(top_dino_texture, true);
 		side_spawn.x = (screen_width / 2) - placement_correction;
-		side_spawn.y = 0;
+		side_spawn.y = -dino_height;
 		move_up = false;
 		move_down = true;
 		move_left = false;
@@ -29,7 +29,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	else if (random_side == 1)
 	{
 		dinosaur.setTexture(right_dino_texture, true);
-		side_spawn.x = screen_width;
+		side_spawn.x = screen_width + dino_width;
 		side_spawn.y = (screen_height / 2) - placement_correction;
 		move_up = false;
 		move_down = false;
@@ -40,7 +40,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	{
 		dinosaur.setTexture(bottom_dino_texture, true);
 		side_spawn.x = (screen_width / 2) - placement_correction;
-		side_spawn.y = screen_height;
+		side_spawn.y = screen_height + dino_width;
 		move_up = true;
 		move_down = false;
 		move_left = false;
@@ -49,7 +49,7 @@ void Dinosaurs::spawnDinosaurs(float screen_width, float screen_height)
 	else if (random_side == 3)
 	{
 		dinosaur.setTexture(left_dino_texture, true);
-		side_spawn.x = 0;
+		side_spawn.x = -dino_width;
 		side_spawn.y = (screen_height / 2) - placement_correction - 10;
 		move_up = false;
 		move_down = false;
@@ -64,7 +64,7 @@ void Dinosaurs::drawTo(sf::RenderWindow& window)
 	window.draw(dinosaur);
 }
 
-void Dinosaurs::moveDinosaurs(float dino_speed)
+void Dinosaurs::moveDinosaurs(int dino_speed)
 {
 	// Move in direction corresponding to side generated
 	if (move_down)
@@ -101,9 +101,4 @@ void Dinosaurs::killDinosaurs(bool& dino_dead, Player& player_rect, int& lives_l
 		dino_dead = true;
 		lives_left--;
 	}
-}
-
-void Dinosaurs::resetDinosaur(float screen_width, float screen_height)
-{
-	spawnDinosaurs(screen_width, screen_height);
 }

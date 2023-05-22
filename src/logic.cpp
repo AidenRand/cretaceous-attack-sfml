@@ -1,6 +1,6 @@
 #include "logic.hpp"
 
-Logic::Logic(int& score_num, float score_x, float score_y, int& lives_num, float lives_x, float lives_y)
+Logic::Logic(int& score_num, float score_x, float score_y, int& lives_num, float lives_x, float lives_y, std::string end_text_string, float& end_text_x, float& end_text_y)
 {
 	// Add leading zeros to score
 	size_t n = 3;
@@ -13,6 +13,12 @@ Logic::Logic(int& score_num, float score_x, float score_y, int& lives_num, float
 	std::string lives_string = std::to_string(lives_num);
 	lives_left.setString(lives_string);
 	lives_left.setPosition(sf::Vector2f(lives_x, lives_y));
+
+	end_text.setString(end_text_string);
+	end_text.setCharacterSize(font_size);
+	end_text.setFont(font);
+	end_text.setFillColor(white);
+	end_text.setPosition(sf::Vector2f(end_text_x, end_text_y));
 
 	font.loadFromFile("content/8_bit_party.ttf");
 }
@@ -33,4 +39,16 @@ void Logic::drawLives(sf::RenderWindow& window)
 	lives_left.setCharacterSize(font_size);
 	lives_left.setFillColor(white);
 	window.draw(lives_left);
+}
+
+void Logic::endGame(sf::RenderWindow& window, int& score, int& lives_left, int& dino_speed)
+{
+	dino_speed = 0;
+	window.draw(end_text);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		score = 0;
+		lives_left = 5;
+		dino_speed = 10;
+	}
 }

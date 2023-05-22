@@ -8,8 +8,6 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 {
 	std::srand(time(NULL));
 
-	// bool end_game = false;
-
 	sf::Texture background_texture;
 	sf::Sprite background;
 	if (!background_texture.loadFromFile("content/background.jpeg"))
@@ -17,24 +15,29 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		std::cout << "ERROR: Cannot load background image";
 	}
 	background.setTexture(background_texture);
-	float background_x = 10;
+	float background_x = 0;
 	float background_y = -120;
 	background.setPosition(sf::Vector2f(background_x, background_y));
 
+	// End game text variables
+	std::string end_text_string = "Press space to play again";
+	float end_text_x = 600;
+	float end_text_y = 500;
+
 	// Score variables
 	int score = 0;
-	float score_x = 100.0;
-	float score_y = 50.0;
+	float score_x = 60;
+	float score_y = 50;
 
 	// Lives left variables
 	int lives_left = 5;
-	float lives_x = 1150.0;
-	float lives_y = 50.0;
+	float lives_x = 1180;
+	float lives_y = 50;
 
 	// Create player
 	float plr_width = 1;
 	float plr_height = 1;
-	float plr_x = 610;
+	float plr_x = 600;
 	float plr_y = 482;
 	Player player(plr_width, plr_height, plr_x, plr_y);
 
@@ -43,7 +46,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	float bullet_height = 5;
 	float bullet_x = 640;
 	float bullet_y = 505;
-	float bullet_speed = 40;
+	int bullet_speed = 40;
 	int cooldown = 10;
 	unsigned int reload_timer = 0;
 	bool bullet_firing = false;
@@ -54,12 +57,12 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	// Dinosaur variables
 	float dino_width = 1;
 	float dino_height = 1;
-	float dino_speed = 10;
+	int dino_speed = 10;
 	bool dino_dead = false;
 
 	// Create dinosaurs
 	Dinosaurs dinosaur(dino_width, dino_height);
-	dinosaur.spawnDinosaurs(screen_width, screen_height);
+	dinosaur.spawnDinosaurs(screen_width, screen_height, dino_height, dino_width);
 
 	while (window.isOpen())
 	{
@@ -127,17 +130,22 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		// If dino_dead == true, reset dinosaur
 		if (dino_dead)
 		{
-			dinosaur.resetDinosaur(screen_width, screen_height);
+			dinosaur.spawnDinosaurs(screen_width, screen_height, dino_height, dino_width);
 			dino_dead = false;
 		}
 
-		// Create score and lives left
-		Logic logic(score, score_x, score_y, lives_left, lives_x, lives_y);
-
-		logic.drawScore(window);
-		logic.drawLives(window);
 		player.drawTo(window);
 		player.changePlayerTexture();
+
+		// Create score and lives left
+		Logic logic(score, score_x, score_y, lives_left, lives_x, lives_y, end_text_string, end_text_x, end_text_y);
+		logic.drawScore(window);
+		logic.drawLives(window);
+		if (lives_left == 0)
+		{
+			logic.endGame(window, score, lives_left, dino_speed);
+		}
+
 		window.display();
 	}
 }
