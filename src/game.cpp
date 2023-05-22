@@ -61,6 +61,11 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	bool dino_dead = false;
 
 	// Create dinosaurs
+	sf::Texture bottom_dinosaur_texture;
+	if (!bottom_dinosaur_texture.loadFromFile("content/bottom-dinosaur.png"))
+	{
+		std::cout << "ERROR: Cannot load bottom dinosaur texture";
+	}
 	Dinosaur dinosaur(dino_width, dino_height);
 	dinosaur.spawnDinosaur(screen_width, screen_height, dino_height, dino_width);
 
