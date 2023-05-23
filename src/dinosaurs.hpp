@@ -33,7 +33,7 @@ private:
 	sf::IntRect right_uv_rect;
 	sf::IntRect left_uv_rect;
 	float total_time;
-	float switch_time = 0.1f;
+	float switch_time = 0.05f;
 	sf::Vector2u image_count = sf::Vector2u(8, 1);
 	sf::Vector2u current_image;
 
