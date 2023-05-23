@@ -19,6 +19,9 @@ Dinosaur::Dinosaur(float dino_width, float dino_height)
 
 	right_uv_rect.width = right_dino_texture.getSize().x / float(image_count.x);
 	right_uv_rect.height = right_dino_texture.getSize().y / float(image_count.y);
+
+	left_uv_rect.width = left_dino_texture.getSize().x / float(image_count.x);
+	left_uv_rect.height = left_dino_texture.getSize().y / float(image_count.y);
 }
 
 void Dinosaur::spawnDinosaur(float screen_width, float screen_height, float& dino_width, float& dino_height)
@@ -59,8 +62,8 @@ void Dinosaur::spawnDinosaur(float screen_width, float screen_height, float& din
 	else if (random_side == 3)
 	{
 		dinosaur.setTexture(left_dino_texture, true);
-		side_spawn.x = -dino_width - placement_correction;
-		side_spawn.y = (screen_height / 2);
+		side_spawn.x = -dino_width - (placement_correction * 5);
+		side_spawn.y = (screen_height / 2) - (placement_correction * 2);
 		move_up = false;
 		move_down = false;
 		move_left = false;
@@ -95,6 +98,9 @@ void Dinosaur::animateDinosaur(int row, float dt)
 
 	right_uv_rect.left = current_image.x * right_uv_rect.width;
 	right_uv_rect.top = current_image.y * right_uv_rect.height;
+
+	left_uv_rect.left = current_image.x * left_uv_rect.width;
+	left_uv_rect.top = current_image.y * left_uv_rect.height;
 }
 
 void Dinosaur::moveDinosaur(int dino_speed)
@@ -121,6 +127,7 @@ void Dinosaur::moveDinosaur(int dino_speed)
 	{
 		direction.x = dino_speed;
 		direction.y = 0;
+		dinosaur.setTextureRect(left_uv_rect);
 	}
 	dinosaur.move(direction);
 }
