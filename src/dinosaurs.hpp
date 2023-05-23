@@ -10,6 +10,7 @@ public:
 	Dinosaur(float dino_width, float dino_height);
 	void spawnDinosaur(float screen_width, float screen_height, float& dino_width, float& dino_height);
 	void drawTo(sf::RenderWindow& window);
+	void animateDinosaur(int row, float dt);
 	void moveDinosaur(int dino_speed);
 	void killDinosaur(bool& dino_dead, Player& player_rect, int& lives_left);
 	sf::Sprite dinosaur;
@@ -26,6 +27,12 @@ private:
 	sf::Texture bottom_dino_texture;
 	sf::Texture left_dino_texture;
 	sf::Texture right_dino_texture;
+
+	sf::IntRect uv_rect;
+	float total_time;
+	float switch_time = 0.05f;
+	sf::Vector2u image_count = sf::Vector2u(8, 1);
+	sf::Vector2u current_image;
 
 	bool move_up;
 	bool move_down;

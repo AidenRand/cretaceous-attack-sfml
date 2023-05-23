@@ -10,12 +10,18 @@ Dinosaur::Dinosaur(float dino_width, float dino_height)
 	bottom_dino_texture.loadFromFile("content/bottom-dinosaur.png");
 	left_dino_texture.loadFromFile("content/left-dinosaur.png");
 	right_dino_texture.loadFromFile("content/right-dinosaur.png");
+
+	total_time = 0.0f;
+	current_image.x = 0;
+
+	uv_rect.width = bottom_dino_texture.getSize().x / float(image_count.x);
+	uv_rect.height = bottom_dino_texture.getSize().y / float(image_count.y);
 }
 
 void Dinosaur::spawnDinosaur(float screen_width, float screen_height, float& dino_width, float& dino_height)
 {
 	random_side = rand() % 4;
-	std::cout << dino_width << "\n";
+
 	// Spawn dinosaur on side corresponding to random number generated
 	if (random_side == 0)
 	{
@@ -65,6 +71,26 @@ void Dinosaur::drawTo(sf::RenderWindow& window)
 	window.draw(dinosaur);
 }
 
+void Dinosaur::animateDinosaur(int row, float dt)
+{
+	// Start at beginning of texture and loop through images
+	current_image.y = row;
+	total_time += dt;
+
+	if (total_time >= switch_time)
+	{
+		total_time -= switch_time;
+		current_image.x++;
+		if (current_image.x >= image_count.x)
+		{
+			current_image.x = 0;
+		}
+	}
+
+	uv_rect.left = current_image.x * uv_rect.width;
+	uv_rect.top = current_image.y * uv_rect.height;
+}
+
 void Dinosaur::moveDinosaur(int dino_speed)
 {
 	// Move in direction corresponding to side generated
@@ -82,6 +108,7 @@ void Dinosaur::moveDinosaur(int dino_speed)
 	{
 		direction.x = 0;
 		direction.y = -dino_speed;
+		dinosaur.setTextureRect(uv_rect);
 	}
 	if (move_right)
 	{

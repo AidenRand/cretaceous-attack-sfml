@@ -60,17 +60,16 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	int dino_speed = 10;
 	bool dino_dead = false;
 
+	float dt;
+	sf::Clock clock;
+
 	// Create dinosaurs
-	sf::Texture bottom_dinosaur_texture;
-	if (!bottom_dinosaur_texture.loadFromFile("content/bottom-dinosaur.png"))
-	{
-		std::cout << "ERROR: Cannot load bottom dinosaur texture";
-	}
 	Dinosaur dinosaur(dino_width, dino_height);
 	dinosaur.spawnDinosaur(screen_width, screen_height, dino_height, dino_width);
 
 	while (window.isOpen())
 	{
+		dt = clock.restart().asSeconds();
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -127,10 +126,11 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		// If dinosaur is dead give dinosaur new position
 		if (!dino_dead)
 		{
+			dinosaur.animateDinosaur(0, dt);
 			dinosaur.moveDinosaur(dino_speed);
 			dinosaur.drawTo(window);
+			dinosaur.killDinosaur(dino_dead, player, lives_left);
 		}
-		dinosaur.killDinosaur(dino_dead, player, lives_left);
 
 		// If dino_dead == true, reset dinosaur
 		if (dino_dead)
