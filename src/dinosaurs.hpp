@@ -28,9 +28,10 @@ private:
 	sf::Texture left_dino_texture;
 	sf::Texture right_dino_texture;
 
-	sf::IntRect uv_rect;
+	sf::IntRect bottom_uv_rect;
+	sf::IntRect right_uv_rect;
 	float total_time;
-	float switch_time = 0.05f;
+	float switch_time = 0.1f;
 	sf::Vector2u image_count = sf::Vector2u(8, 1);
 	sf::Vector2u current_image;
 

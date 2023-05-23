@@ -14,8 +14,11 @@ Dinosaur::Dinosaur(float dino_width, float dino_height)
 	total_time = 0.0f;
 	current_image.x = 0;
 
-	uv_rect.width = bottom_dino_texture.getSize().x / float(image_count.x);
-	uv_rect.height = bottom_dino_texture.getSize().y / float(image_count.y);
+	bottom_uv_rect.width = bottom_dino_texture.getSize().x / float(image_count.x);
+	bottom_uv_rect.height = bottom_dino_texture.getSize().y / float(image_count.y);
+
+	right_uv_rect.width = right_dino_texture.getSize().x / float(image_count.x);
+	right_uv_rect.height = right_dino_texture.getSize().y / float(image_count.y);
 }
 
 void Dinosaur::spawnDinosaur(float screen_width, float screen_height, float& dino_width, float& dino_height)
@@ -73,7 +76,7 @@ void Dinosaur::drawTo(sf::RenderWindow& window)
 
 void Dinosaur::animateDinosaur(int row, float dt)
 {
-	// Start at beginning of texture and loop through images
+	// Loop back and forth through textures in sprite sheet
 	current_image.y = row;
 	total_time += dt;
 
@@ -87,8 +90,11 @@ void Dinosaur::animateDinosaur(int row, float dt)
 		}
 	}
 
-	uv_rect.left = current_image.x * uv_rect.width;
-	uv_rect.top = current_image.y * uv_rect.height;
+	bottom_uv_rect.left = current_image.x * bottom_uv_rect.width;
+	bottom_uv_rect.top = current_image.y * bottom_uv_rect.height;
+
+	right_uv_rect.left = current_image.x * right_uv_rect.width;
+	right_uv_rect.top = current_image.y * right_uv_rect.height;
 }
 
 void Dinosaur::moveDinosaur(int dino_speed)
@@ -103,12 +109,13 @@ void Dinosaur::moveDinosaur(int dino_speed)
 	{
 		direction.x = -dino_speed;
 		direction.y = 0;
+		dinosaur.setTextureRect(right_uv_rect);
 	}
 	if (move_up)
 	{
 		direction.x = 0;
 		direction.y = -dino_speed;
-		dinosaur.setTextureRect(uv_rect);
+		dinosaur.setTextureRect(bottom_uv_rect);
 	}
 	if (move_right)
 	{
