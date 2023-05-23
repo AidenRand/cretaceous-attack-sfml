@@ -28,6 +28,7 @@ private:
 	sf::Texture left_dino_texture;
 	sf::Texture right_dino_texture;
 
+	sf::IntRect top_uv_rect;
 	sf::IntRect bottom_uv_rect;
 	sf::IntRect right_uv_rect;
 	sf::IntRect left_uv_rect;
