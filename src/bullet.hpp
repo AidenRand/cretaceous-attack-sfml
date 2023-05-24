@@ -13,7 +13,7 @@ public:
 	void setPos(float player_x, float player_y);
 	void fireBullet(Player& player_rect, int bullet_speed);
 	void bulletCollision(Dinosaur& dino_rect, bool& dino_dead, bool& bullet_dead, int& score, float screen_width, float screen_height);
-	void moveBullet();
+	void moveBullet(float dt);
 	float returnX();
 	float returnY();
 

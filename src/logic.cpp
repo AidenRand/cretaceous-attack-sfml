@@ -56,6 +56,6 @@ void Logic::endGame(sf::RenderWindow& window, int& score, int& lives_left, int& 
 	{
 		score = 0;
 		lives_left = 5;
-		dino_speed = 10;
+		dino_speed = 600;
 	}
 }

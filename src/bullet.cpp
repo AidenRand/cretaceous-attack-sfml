@@ -69,9 +69,9 @@ void Bullet::bulletCollision(Dinosaur& dino_rect, bool& dino_dead, bool& bullet_
 	}
 }
 
-void Bullet::moveBullet()
+void Bullet::moveBullet(float dt)
 {
-	bullet.move(bullet_dir);
+	bullet.move(bullet_dir * dt);
 }
 
 float Bullet::returnX()

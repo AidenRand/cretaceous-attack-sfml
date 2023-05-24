@@ -109,7 +109,7 @@ void Dinosaur::animateDinosaur(int row, float dt)
 	left_uv_rect.top = current_image.y * left_uv_rect.height;
 }
 
-void Dinosaur::moveDinosaur(int dino_speed)
+void Dinosaur::moveDinosaur(int dino_speed, float dt)
 {
 	// Move in direction corresponding to side generated
 	if (move_down)
@@ -136,7 +136,7 @@ void Dinosaur::moveDinosaur(int dino_speed)
 		direction.y = 0;
 		dinosaur.setTextureRect(left_uv_rect);
 	}
-	dinosaur.move(direction);
+	dinosaur.move(direction * dt);
 }
 
 void Dinosaur::killDinosaur(bool& dino_dead, Player& player_rect, int& lives_left)

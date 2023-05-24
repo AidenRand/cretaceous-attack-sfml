@@ -11,7 +11,7 @@ public:
 	void spawnDinosaur(float screen_width, float screen_height, float& dino_width, float& dino_height);
 	void drawTo(sf::RenderWindow& window);
 	void animateDinosaur(int row, float dt);
-	void moveDinosaur(int dino_speed);
+	void moveDinosaur(int dino_speed, float dt);
 	void killDinosaur(bool& dino_dead, Player& player_rect, int& lives_left);
 	sf::Sprite dinosaur;
 
