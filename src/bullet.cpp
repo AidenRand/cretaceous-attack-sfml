@@ -2,8 +2,9 @@
 #include "dinosaurs.hpp"
 #include "player.hpp"
 
-Bullet::Bullet(float bullet_width, float bullet_height)
+Bullet::Bullet(float bullet_width, float bullet_height, float bullet_x, float bullet_y)
 {
+	bullet.setPosition(sf::Vector2f(bullet_x, bullet_y));
 	bullet.setSize(sf::Vector2f(bullet_width, bullet_height));
 	bullet.setFillColor(sf::Color(5, 5, 5));
 }
@@ -11,11 +12,6 @@ Bullet::Bullet(float bullet_width, float bullet_height)
 void Bullet::drawTo(sf::RenderWindow& window)
 {
 	window.draw(bullet);
-}
-
-void Bullet::setPos(float player_x, float player_y)
-{
-	bullet.setPosition(sf::Vector2f(player_x, player_y));
 }
 
 void Bullet::fireBullet(Player& player_rect, int bullet_speed)
@@ -74,14 +70,18 @@ void Bullet::moveBullet(float dt)
 	bullet.move(bullet_dir * dt);
 }
 
-float Bullet::returnX()
+void Bullet::getGunshotSound()
 {
-	float bullet_x = bullet.getPosition().x;
-	return bullet_x;
+	// Fetch gunshot sound from file
+	if (!gunshot_sound_buffer.loadFromFile("content/gunshot_sound.wav"))
+	{
+		std::cout << "ERROR:: Could not load gunshot sound";
+	}
+
+	gunshot_sound.setBuffer(gunshot_sound_buffer);
 }
 
-float Bullet::returnY()
+void Bullet::playGunshotSound()
 {
-	float bullet_y = bullet.getPosition().y;
-	return bullet_y;
+	gunshot_sound.play();
 }

@@ -52,7 +52,7 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 	bool bullet_firing = false;
 	bool bullet_dead = false;
 	std::vector<Bullet> bullet_vector;
-	Bullet bullet(bullet_width, bullet_height);
+	Bullet bullet(bullet_width, bullet_height, bullet_x, bullet_y);
 
 	// Dinosaur variables
 	float dino_width = 128;
@@ -93,10 +93,12 @@ void gameFunction(sf::RenderWindow& window, float screen_width, float screen_hei
 		// If the reload timer is zero, allow bullet to be fired
 		if (reload_timer == 0)
 		{
+			// If the bullet_firing is true, fire the bullet
 			if (bullet_firing)
 			{
 				bullet.fireBullet(player, bullet_speed);
-				bullet.setPos(bullet_x, bullet_y);
+				bullet.getGunshotSound();
+				bullet.playGunshotSound();
 				bullet_firing = false;
 				reload_timer += cooldown;
 				bullet_vector.push_back(bullet);
